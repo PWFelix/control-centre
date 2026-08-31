@@ -78,11 +78,11 @@ is read-through (not owned).
 ## 9. Open questions / prerequisites
 - **Repo name + visibility** (default: `PWFelix/control-centre`, private).
 - **Reviewer bot provisioning.** The convergence loop reviews *against an automated
-  reviewer* (e.g. Copilot code review) on the repo. If none is provisioned, no review
-  lands and the loop escalates on the review-wait timeout. Need to confirm it's enabled.
-- **Fleet daemon.** Is a `c8ctl nano work` daemon subscribed to the `senior:*` task
-  types, so submitted rounds actually get worked? (Needed for both the plan review and
-  the build.)
+  reviewer* (Copilot code review) on the repo. Now provisioned via a repository ruleset
+  ("Request pull request review from Copilot") targeting `main` and `epic/*`, so every PR
+  is auto-reviewed and the loop has a reviewer to converge against.
+- **Fleet daemon.** Confirmed working — a fleet worker leased and completed a
+  `senior:pr-review` round on this PR, so `senior:*` task types are being serviced.
 - **Claude API key** for the orchestrator (a build-time concern, not needed to plan).
 - **Auth model** for the Control Centre — local single-user to start?
 
