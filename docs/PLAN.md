@@ -76,7 +76,8 @@ capturing → clarifying → shaping → in_review
 
 ### 5.1 Shape — Decision D1 (recorded, to confirm)
 The cockpit is a **thin app that calls the workforce control API over HTTP** (Principle 3).
-**Open decision D1: Nano Urban app vs standalone Node/React service.** A standalone app
+**Open decision D1: Nano Urban app vs standalone Node/React service.** ("Nano Urban" is the
+[Nano](https://nanobpm.io) app-hosting platform that Nano Workforce itself is built on.) A standalone app
 means re-building auth, secret handling, deployment, and a workforce API client — exactly
 the surfaces this review flags as risky. A **Nano Urban app** likely inherits auth,
 secrets, and deployment and sits closer to the workforce, removing bootstrapping work.
@@ -124,8 +125,7 @@ Timestamps (`createdAt`/`updatedAt`) and `owner` on every entity.
 - `ClarifyTurn { id, ideaId, role, content, createdAt }` — the spec's provenance.
 - `Approval { id, ideaId, specVersion, approvedBy, approvedAt, vehicle, rationale }` — the
   audit record for a button that spends money and mutates a repo.
-- `Delegation { id, ideaId, specVersion, vehicle, status, idempotencyKey,
-  prKey|planKey|digest, requestedAt, dispatchedAt }`.
+- `Delegation { id, ideaId, specVersion, vehicle, status, idempotencyKey, prKey/planKey/digest, requestedAt, dispatchedAt }`.
 - `AuditEvent { id, ideaId, actor, type, payload, at }` — **append-only** log of every
   state transition, approval, and dispatch.
 - Workforce status is **read-through** (not owned), linked via the external keys above.
